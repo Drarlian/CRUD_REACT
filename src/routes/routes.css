@@ -1,0 +1,46 @@
+/* Home */
+.HomeVisual form {
+    gap: 1rem;
+    flex-direction: column;
+
+    height: 70px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+    margin-top: calc(50vh - 150px);
+}
+
+input{
+    padding: 5px;
+}
+
+button{
+    border-radius: 5px;
+    padding: 5px;
+    margin-top: 15px;
+    flex-direction: row;
+  }
+
+  .botoesFormulario button{
+    margin-left: 10px;
+  }
+
+  /* Tabela */
+.TabelaVisual table {
+    gap: 1rem;
+    flex-direction: column;
+
+    height: 70px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+    margin-top: calc(50vh - 150px);
+}
+
+td{
+    border: solid;
+}

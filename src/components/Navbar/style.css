@@ -1,0 +1,19 @@
+.nav-bar {
+    display: flex;
+    flex-direction: row;
+    gap: 5rem;
+    justify-content: center;
+    padding: 8px;
+    /* justify-content: space-between; */
+}
+
+.linkNav{
+    text-decoration: none;
+    color: white;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.linkNav:hover{
+    background-color: orange;
+}
