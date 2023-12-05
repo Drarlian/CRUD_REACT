@@ -1,4 +1,10 @@
+import React, { useContext} from "react";
+import { UsersContext } from '../contexts/UsersContext';
+import './tabela.css';
+
+
 function Tabela() {
+  const {users} = useContext(UsersContext);
 
   return (
     <div className="TabelaVisual">
@@ -9,15 +15,19 @@ function Tabela() {
             <th>Email</th>
             <th>Idade</th>
             <th>Profissão</th>
+            <th>Remover</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Dado1</td>
-            <td>Dado2</td>
-            <td>Dado3</td>
-            <td>Dado4</td>
-          </tr>
+          {users.map((i) => (
+            <tr key={i.id}>
+              <td>{i.nome}</td>
+              <td >{i.email}</td>
+              <td>{i.idade}</td>
+              <td>{i.emprego}</td>
+              <td><button>Remover</button></td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>

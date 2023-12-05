@@ -26,21 +26,3 @@ button{
   .botoesFormulario button{
     margin-left: 10px;
   }
-
-  /* Tabela */
-.TabelaVisual table {
-    gap: 1rem;
-    flex-direction: column;
-
-    height: 70px;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 10px;
-    margin-top: calc(50vh - 150px);
-}
-
-td{
-    border: solid;
-}
