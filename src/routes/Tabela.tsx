@@ -4,7 +4,7 @@ import './tabela.css';
 
 
 function Tabela() {
-  const {users} = useContext(UsersContext);
+  const {users, removerUsuario} = useContext(UsersContext);
 
   return (
     <div className="TabelaVisual">
@@ -25,7 +25,7 @@ function Tabela() {
               <td >{i.email}</td>
               <td>{i.idade}</td>
               <td>{i.emprego}</td>
-              <td><button>Remover</button></td>
+              <td><button onClick={() => removerUsuario(i.id)}>Remover</button></td>
             </tr>
           ))}
         </tbody>

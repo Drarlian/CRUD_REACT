@@ -1,31 +1,31 @@
 import './home.css';
-import { useState, useRef } from 'react';
+import { useContext, useRef } from 'react';
+import { UsersContext } from '../contexts/UsersContext';
 import { ToastContainer, toast } from 'react-toastify';
 
 
 function Home() {
+
+  const {alteraDados} = useContext(UsersContext);
 
   const refNome = useRef<HTMLInputElement>(null!);
   const refEmail = useRef<HTMLInputElement>(null!);
   const refIdade = useRef<HTMLInputElement>(null!);
   const refEmprego = useRef<HTMLInputElement>(null!);
 
-  function enviaDados(event: React.FormEvent<HTMLButtonElement>){
+  function enviarDados(event: React.FormEvent<HTMLButtonElement>){
     event.preventDefault();
 
-    const dados = {
-        nome: refNome.current?.value,
-        email: refEmail.current?.value,
-        idade: refIdade.current?.value,
-        emprego: refEmprego.current?.value
+    if (refNome.current.value != '' && refEmail.current.value != '' && refIdade.current.value != '' && refEmprego.current.value != ''){
+      toast.success('Dados Enviados!');
+      alteraDados(refNome.current?.value, refEmail.current?.value, Number(refIdade.current?.value), refEmprego.current?.value);
+      limparDados();
+    } else{
+      toast.warning("Dados Incompletos!")
     }
-
-    toast.success('Dados Enviados!');
-    console.log(dados);
-
   }
 
-  function apagaDados(event: React.FormEvent<HTMLButtonElement>){
+  function apagarDados(event: React.FormEvent<HTMLButtonElement>){
     event.preventDefault();
 
     if (refNome.current.value != '' || refEmail.current.value != '' || refIdade.current.value != '' || refEmprego.current.value != ''){
@@ -40,6 +40,13 @@ function Home() {
     }
   }
 
+  function limparDados(){
+    refNome.current.value = '';
+    refEmail.current.value = '';
+    refIdade.current.value = '';
+    refEmprego.current.value = '';
+  }
+
   return (
     <div className="HomeVisual">
         <ToastContainer />
@@ -50,8 +57,8 @@ function Home() {
             <input type="number" placeholder="Idade" ref={refIdade}></input>
             <input type="text" placeholder="Emprego" ref={refEmprego}></input>
             <div className='botoesFormulario'>
-                <button type='submit' onClick={apagaDados}>Limpar</button>
-                <button type='submit' onClick={enviaDados}>Enviar</button>
+                <button type='submit' onClick={apagarDados}>Limpar</button>
+                <button type='submit' onClick={enviarDados}>Enviar</button>
             </div>
         </form>
     </div>

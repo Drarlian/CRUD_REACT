@@ -11,24 +11,37 @@ export type User = {
 
 interface Props {
     users: User[];
+    alteraDados: (nome: string, email: string, idade: number, emprego: string) => void;
+    removerUsuario: (id: number) => void;
 }
 
 interface TypeChildrenNode {
     children: ReactNode;
 } 
 
-let obj = {
-    id: 1,
-    nome: 'Renato',
-    email: 'renato@gmail.com',
-    idade: 12,
-    emprego: 'Pintor'
-}
-
 export const UsersContext = createContext({} as Props);
 
 export function UsersProvider({children}: TypeChildrenNode){
-    const [users, setUsers] = useState<User[]>([obj]);
+    const [users, setUsers] = useState<User[]>([]);
 
-    return <UsersContext.Provider value={{users}}>{children}</UsersContext.Provider>
+    function alteraDados(nome: string, email: string, idade: number, emprego: string){
+        let idTemp = users.length + 1;
+
+        const obj = {
+            id: idTemp,
+            nome,
+            email,
+            idade,
+            emprego
+        }
+
+        setUsers([...users, obj]);
+    }
+
+    function removerUsuario(id: number): void{
+        const newUsers = users.filter(usuario => usuario.id != id);
+        setUsers(newUsers);
+    }
+
+    return <UsersContext.Provider value={{users, alteraDados, removerUsuario}}>{children}</UsersContext.Provider>
 }
